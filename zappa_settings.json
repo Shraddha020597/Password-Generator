@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "app_function": "main.app", 
+    "aws_region": "ap-southeast-2", 
+    "profile_name": "default", 
+    "project_name": "password-generator",
+    "runtime": "python3.9",
+    "s3_bucket": "password-generator-zappa-deploy"
+  }
+}
