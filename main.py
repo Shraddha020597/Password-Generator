@@ -55,5 +55,3 @@ def update_log(username):
 def read_log():
     with open(log_file) as f:
         return json.load(f)
-
-app.run(host='0.0.0.0', port=81)
