@@ -1,6 +1,30 @@
 {
-  "total_users": 0,
-  "last_used": "",
-  "users": [],
-  "passwords": []
+  "total_users": 2,
+  "last_used": "2025-05-08 13:46:00",
+  "users": [
+    "Anonymous",
+    "Despina"
+  ],
+  "passwords": [
+    {
+      "username": "Anonymous",
+      "password": "[%Du(YcThS}_",
+      "timestamp": "2025-05-08 13:45:26"
+    },
+    {
+      "username": "Anonymous",
+      "password": "@Q-(EHBavizq",
+      "timestamp": "2025-05-08 13:45:29"
+    },
+    {
+      "username": "Anonymous",
+      "password": "BD>~N+A9FAlera6yaxrk^!8O\"qr!HqBn\"<>g<*}]EDRP{ZZ|V6",
+      "timestamp": "2025-05-08 13:45:35"
+    },
+    {
+      "username": "Despina",
+      "password": "/H?):N1$68?6\"efV{{}}!B=RO9",
+      "timestamp": "2025-05-08 13:46:00"
+    }
+  ]
 }
