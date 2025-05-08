@@ -1,76 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>🔐 Password Generator</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      background: linear-gradient(to right, #667eea, #764ba2);
-      color: white;
-      padding: 40px;
-      font-family: 'Segoe UI', sans-serif;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #1e1e2f;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .form-check {
-      margin-bottom: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Password Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 0.6rem;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.4rem;
+        }
+
+        .checkbox-group input {
+            margin-right: 0.5rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .log-box {
+            margin-top: 1.5rem;
+            background-color: #b3e5fc;
+            color: #1e1e2f;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+
+        .log-box h3 {
+            margin: 0 0 0.5rem;
+        }
+
+        .log-box p {
+            margin: 0.3rem 0;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>🔐 Password Generator</h1>
-    <form method="POST">
-      <div class="mb-3">
-        <label class="form-label">Username:</label>
-        <input type="text" name="username" class="form-control" placeholder="Enter your name (optional)">
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Password Length:</label>
-        <input type="number" name="length" class="form-control" value="12" min="4" max="64">
-      </div>
-      <div class="form-check">
-        <input type="checkbox" name="uppercase" class="form-check-input" checked>
-        <label class="form-check-label">Include Uppercase</label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" name="lowercase" class="form-check-input" checked>
-        <label class="form-check-label">Include Lowercase</label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" name="digits" class="form-check-input" checked>
-        <label class="form-check-label">Include Digits</label>
-      </div>
-      <div class="form-check">
-        <input type="checkbox" name="symbols" class="form-check-input" checked>
-        <label class="form-check-label">Include Symbols</label>
-      </div>
-      <div class="mt-3 text-center">
-        <button type="submit" class="btn btn-success">Generate Password</button>
-      </div>
-    </form>
+    <div class="container">
+        <h1>🔐 Password Generator</h1>
 
-    {% if password %}
-      <div class="alert alert-primary mt-4 text-center">
-        <strong>Generated Password:</strong> {{ password }}
-      </div>
-    {% endif %}
+        <form method="POST" action="/">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" placeholder="Enter your name (optional)">
 
-    <div class="alert alert-info mt-4">
-      <h5>🔍 Usage Log</h5>
-      <p><strong>Last Used:</strong> {{ log.last_used }}</p>
-      <p><strong>Total Unique Users:</strong> {{ log.total_users }}</p>
+            <label for="length">Password Length:</label>
+            <input type="number" name="length" id="length" min="4" max="64" value="12">
+
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="uppercase" checked> Include Uppercase</label>
+                <label><input type="checkbox" name="lowercase" checked> Include Lowercase</label>
+                <label><input type="checkbox" name="digits" checked> Include Digits</label>
+                <label><input type="checkbox" name="symbols" checked> Include Symbols</label>
+            </div>
+
+            <button type="submit">Generate Password</button>
+        </form>
+
+        {% if password %}
+            <h2>Generated Password: {{ password }}</h2>
+        {% endif %}
+
+        <div class="log-box">
+            <h3>🔍 Usage Log</h3>
+            <p><strong>Last Used:</strong> {{ log.last_used }}</p>
+            <p><strong>Total Unique Users:</strong> {{ log.total_users }}</p>
+        </div>
     </div>
-  </div>
 </body>
 </html>

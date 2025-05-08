@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 import random, string
 import datetime
 import json
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 log_file = "usage_log.json"
 
-# Initialize log file if it doesn't exist
+# Initialize log file
 if not os.path.exists(log_file):
     with open(log_file, "w") as f:
         json.dump({"total_users": 0, "last_used": "", "users": []}, f)
@@ -56,4 +56,5 @@ def read_log():
     with open(log_file) as f:
         return json.load(f)
 
-app.run(host='0.0.0.0', port=81)
+if __name__ == "__main__":
+    app.run(debug=True)

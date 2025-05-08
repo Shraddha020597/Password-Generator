@@ -1,6 +1,0 @@
-def read_log():
-try:
-    with open('logfile.json', 'r') as f:
-        return json.load(f)
-except json.JSONDecodeError:
-    return {} 
