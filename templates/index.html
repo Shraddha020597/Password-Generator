@@ -1,124 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Password Generator</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Password Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
-        .container {
-            background-color: #1e1e2f;
-            color: #fff;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            max-width: 500px;
-            width: 100%;
-        }
+    .container {
+      background-color: #1e1e2f;
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      width: 400px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        label {
-            display: block;
-            margin-bottom: 0.3rem;
-            font-weight: bold;
-        }
+    label, p {
+      margin: 5px 0;
+      font-weight: bold;
+    }
 
-        input[type="text"],
-        input[type="number"] {
-            width: 100%;
-            padding: 0.6rem;
-            border: none;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 5px;
+      border: none;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
 
-        .checkbox-group {
-            margin-bottom: 1rem;
-        }
+    .checkbox-group {
+      margin: 10px 0;
+    }
 
-        .checkbox-group label {
-            display: flex;
-            align-items: center;
-            margin-bottom: 0.4rem;
-        }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+    }
 
-        .checkbox-group input {
-            margin-right: 0.5rem;
-        }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #28a745;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
 
-        button {
-            width: 100%;
-            padding: 0.8rem;
-            background-color: #28a745;
-            border: none;
-            color: white;
-            font-size: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    button:hover {
+      background-color: #218838;
+    }
 
-        .log-box {
-            margin-top: 1.5rem;
-            background-color: #b3e5fc;
-            color: #1e1e2f;
-            padding: 1rem;
-            border-radius: 10px;
-        }
+    .generated-password {
+      margin: 15px 0;
+      font-size: 1.2rem;
+      color: #ffeb3b;
+    }
 
-        .log-box h3 {
-            margin: 0 0 0.5rem;
-        }
+    .log {
+      margin-top: 1rem;
+      background-color: #b2ebf2;
+      color: #333;
+      padding: 1rem;
+      border-radius: 10px;
+    }
 
-        .log-box p {
-            margin: 0.3rem 0;
-        }
-    </style>
+    .log h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .log p {
+      margin: 5px 0;
+    }
+
+    .icon {
+      font-size: 1.2rem;
+      margin-right: 0.3rem;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🔐 Password Generator</h1>
+  <div class="container">
+    <h1>🔐 Password Generator</h1>
+    <form method="POST">
+      <label for="username">Username:</label>
+      <input type="text" name="username" placeholder="Enter your name (optional)">
 
-        <form method="POST" action="/">
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" placeholder="Enter your name (optional)">
+      <label for="length">Password Length:</label>
+      <input type="number" name="length" value="12" min="6" max="64">
 
-            <label for="length">Password Length:</label>
-            <input type="number" name="length" id="length" min="4" max="64" value="12">
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="uppercase" checked> Include Uppercase</label>
+        <label><input type="checkbox" name="lowercase" checked> Include Lowercase</label>
+        <label><input type="checkbox" name="digits" checked> Include Digits</label>
+        <label><input type="checkbox" name="symbols" checked> Include Symbols</label>
+      </div>
 
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="uppercase" checked> Include Uppercase</label>
-                <label><input type="checkbox" name="lowercase" checked> Include Lowercase</label>
-                <label><input type="checkbox" name="digits" checked> Include Digits</label>
-                <label><input type="checkbox" name="symbols" checked> Include Symbols</label>
-            </div>
+      <button type="submit">Generate Password</button>
+    </form>
 
-            <button type="submit">Generate Password</button>
-        </form>
+    {% if password %}
+      <div class="generated-password">
+        <strong>Generated Password:</strong> {{ password }}
+      </div>
+    {% endif %}
 
-        {% if password %}
-            <h2>Generated Password: {{ password }}</h2>
-        {% endif %}
-
-        <div class="log-box">
-            <h3>🔍 Usage Log</h3>
-            <p><strong>Last Used:</strong> {{ log.last_used }}</p>
-            <p><strong>Total Unique Users:</strong> {{ log.total_users }}</p>
-        </div>
+    <div class="log">
+      <h3>🔍 Usage Log</h3>
+      <p><strong>Last Used:</strong> {{ log['last_used'] }}</p>
+      <p><strong>Total Unique Users:</strong> {{ log['total_users'] }}</p>
     </div>
+  </div>
 </body>
 </html>
