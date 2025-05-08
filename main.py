@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 log_file = "usage_log.json"
 
-# Initialize log file
+
 if not os.path.exists(log_file):
     with open(log_file, "w") as f:
         json.dump({"total_users": 0, "last_used": "", "users": [], "passwords": []}, f)
@@ -57,7 +57,7 @@ def update_log(username, password):
             f.truncate()
     except (json.JSONDecodeError, FileNotFoundError):
         with open(log_file, "w") as f:
-            # Recreate the file with a default structure if broken
+         
             data = {"total_users": 1, "last_used": now, "users": [username], "passwords": [{"username": username, "password": password, "timestamp": now}]}
             json.dump(data, f, indent=2)
 
@@ -66,7 +66,7 @@ def read_log():
         with open(log_file) as f:
             return json.load(f)
     except (json.JSONDecodeError, FileNotFoundError):
-        # Return a default structure if the file is empty or doesn't exist
+        
         return {"total_users": 0, "last_used": "", "users": [], "passwords": []}
 
 if __name__ == "__main__":
